@@ -3,17 +3,19 @@ repos:
     hooks:
       - id: isort
         name: isort
-        entry: isort --settings-file ./.isort.cfg .
-        args: ["--profile", "black"]
+        #        entry: isort .
+        #        args: ["--profile", "black"]
+
+        entry: isort --check-only --diff --profile black .
         language: system
-        types: [python]
+        types: [ python ]
         pass_filenames: false
 
       - id: black
         name: black
         entry: black .
         language: system
-        types: [python]
+        types: [ python ]
         pass_filenames: false
 
       - id: flake8
