@@ -13,7 +13,7 @@ repos:
 
       - id: black
         name: black
-        entry: black .
+        entry: black --check --diff .
         language: system
         types: [ python ]
         pass_filenames: false
