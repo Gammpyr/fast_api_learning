@@ -34,3 +34,11 @@ extend-exclude = '''
     .git,
     __pycache__)
 '''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+skip = ["venv", "alembic", "docker", ".git", "__pycache__"]
+known_first_party = "app"
+combine_as_imports = true
+lines_after_imports = 1
