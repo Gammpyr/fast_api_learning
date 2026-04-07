@@ -8,11 +8,37 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "black (>=25.9.0,<26.0.0)",
-    "fastapi[all] (>=0.121.0,<0.122.0)"
+    "fastapi[all] (>=0.121.0,<0.122.0)",
+    "uvicorn[standard] (>=0.38.0,<0.39.0)",
+    "environs (>=15.0.0,<16.0.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.lint.dependencies]
+black = "^26.3.1"
+flake8 = "^7.3.0"
+isort = "^8.0.1"
+pre-commit = "^4.5.1"
+
+[tool.black]
+line-length = 120
+target-version = ['py313']
+extend-exclude = '''
+    (venv,
+    alembic,
+    docker,
+    .git,
+    __pycache__)
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 120
+skip = ["venv", "alembic", "docker", ".git", "__pycache__"]
+known_first_party = "app"
+combine_as_imports = true
+lines_after_imports = 1
