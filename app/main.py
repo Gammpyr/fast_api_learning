@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse
 
 from app.config import load_config
 from app.logger import logger
-from app.models.user_models import User
+from app.models.models import Feedback, User
 
 app = FastAPI()
 
@@ -81,6 +81,19 @@ async def read_root():
 @app.get("/index")
 async def temp_root():
     return FileResponse("../templates/index.html")
+
+
+feedbacks = []
+
+
+@app.post("/feedback")
+async def get_feedback(feedback: Feedback):
+    data = {"name": feedback.name, "message": feedback.message}
+
+    # save_data_to_file(data, 'feedback_data')
+
+    feedbacks.append(data)
+    return {"message": f"Спасибо, {feedback.name}! Ваш отзыв сохранён."}
 
 
 if __name__ == "__main__":
